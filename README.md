@@ -1,0 +1,1 @@
+# Angular 2 scaffolding project, based on angular2-seed

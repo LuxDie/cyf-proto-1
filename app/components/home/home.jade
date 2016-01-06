@@ -1,0 +1,22 @@
+form((ngSubmit)="login()", #loginForm="ngForm")
+  h1 Login
+  md-input-container([class.md-input-invalid]="email.touched && !email.valid")
+    label Correo electrónico:
+    input(md-input, type="text", ngControl="email", required, #email="ngForm", [(ngModel)]="credentials.email")
+    div(ng-messages, [hidden]="email.untouched || email.valid")
+      div(ng-message) Ingrese su correo electrónico
+
+  md-input-container([class.md-input-invalid]="password.touched && !password.valid")
+    label Contraseña:
+    input(md-input, type="password", ngControl="password", required, #password="ngForm", [(ngModel)]="credentials.password")
+    div(ng-messages, [hidden]="password.untouched || password.valid")
+      div(ng-message) Ingrese su contraseña
+  button(type="submit", md-raised-button, [disabled]="!loginForm.valid", class="md-raised md-primary") Iniciar sesión
+
+div
+  div(class="alert alert-success",role="alert", *ngIf="authData")
+    strong Bienvenido!
+    |  {{authData.uid}}
+  p(class="alert alert-danger",role="alert", *ngIf="error")
+    strong Error:
+    |  {{error.message}}
